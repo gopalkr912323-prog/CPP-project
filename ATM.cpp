@@ -5,6 +5,9 @@ int main(){
     unsigned int balance = 0;
     char Select_option;
     char select_lang;
+    int pin[4] = {1,1,1,1};
+    int user_entered_pin[4];
+    
 
     cout<<"\n\n\t\t\tWelecome!"<<endl;
     cout<<"\t\t Please insert Your card.\n";
@@ -37,6 +40,7 @@ int main(){
     }
 
     for(int i = 1 ; i <= 6 ; i++){
+        int right = 0;
         switch(select_lang){
                 case 'a':
                 // case 'A': cout<<"\n\t\tPlease Enter Your PIN\n";
@@ -85,26 +89,55 @@ int main(){
                                         int Amt;
                                         cout<<"\nEnter Amount: ";
                                         cin>> Amt;
-                                        balance -= Amt;
                                         cout<<"----------------------------------------------------------------";
-                                        // cout<<"A. Yes \nB. No\n";
-                                        
-                                            cout<<"\n\tPlease Collect Cash and Take Your Card\n";
-                                            getch();
-                                            cout<<"\nWould you like to Display the Balance on the Screen?\n";
-                                            cout<<"\nA. Yes \nB. No\n";
-                                            cout<<"\nSelect: ";
-                                            char S; //select
-                                            cin>> S;
-                                            
-                                            if(S == 'a' || S == 'A'){
-                                                cout<<"\n Your Balance is : "<< balance << endl;
-                                                break;
+
+                                        cout<<"\nEnter PIN: ";
+                                        for(int i = 0 ; i < 4; i++){
+                                            user_entered_pin[i] = getch() - '0';
+                                            cout<<"*";
+                                        }
+                                        getch();
+
+                                        // int right = 0;
+                                        for(int i = 0; i < 4 ; i++){
+                                            if(user_entered_pin[i] == pin[i] ){
+                                                right++;
                                             }
                                             else{
-                                                cout<<"\nThank You";
+                                                cout<<"\nwrong PIN \n\nThank you";
                                                 return 0;
                                             }
+                                        }
+                                        if(right == 4){
+                                            if(Amt < balance){
+                                                balance -= Amt;
+                                                cout<<"\n\tPlease Collect Cash and Take Your Card\n";
+                                                getch();
+                                                cout<<"\nWould you like to Display the Balance on the Screen?\n";
+                                                cout<<"\nA. Yes \nB. No\n";
+                                                cout<<"\nSelect: ";
+                                                char S; //select
+                                                cin>> S;
+                                                
+                                                if(S == 'a' || S == 'A'){
+                                                    cout<<"\n Your Balance is : "<< balance << endl;
+                                                    break;
+                                                }
+                                                else{
+                                                    cout<<"\nThank You";
+                                                    return 0;
+                                                }
+    
+                                            }
+                                            else{
+                                                cout<<"\nInsufficient balance\n\n Thank you";
+                                                return 0;
+                                            }
+                                        
+
+                                        }
+                                        
+                                        
                                         break;
 
                                         
@@ -121,33 +154,119 @@ int main(){
                         }
                         break;
 
-            case 'b':
+            case 'b':       //balance enquiry
             case 'B':   cout<<"\nEnter PIN: ";
-                        for(int i = 1 ; i <= 4 ; i++){
+                            for(int i = 0 ; i < 4; i++){
+                                user_entered_pin[i] = getch() - '0';
+                                cout<<"*";
+                            }
                             getch();
-                            cout<<"*";
-                        }
-                        getch();
-                        cout<<"\n\nYour current balance: "<< balance << endl;
+
+                            // int right = 0;
+                            for(int i = 0; i < 4 ; i++){
+                                if(user_entered_pin[i] == pin[i] ){
+                                    right++;
+                                }
+                                else{
+                                    cout<<"\nwrong PIN \n\nThank you";
+                                    return 0;
+                                }
+                            }
+                            if(right == 4){
+                                cout<<"\n\nYour current balance: "<< balance << endl;
+                               
+
+                            }
+                    
                         break;
 
-            case 'c':
-            case 'C':
+            case 'c':   //pin change section
+            case 'C':   cout<<"\nEnter old PIN: ";
+                            for(int i = 0 ; i < 4 ; i++){
+                                user_entered_pin[i] = getch() - '0';
+                                cout<<"*";
+                            }
+                            getch();
+                            for(int i = 0; i < 4 ; i++){
+                                user_entered_pin[i] == pin[i];
+                                right++;
+                            }
+                            if(right == 4){
+                                cout<<"\n\nEnter new PIN: ";
+                                for(int i = 0 ; i < 4 ; i++){
+                                    pin[i] = getch() - '0';
+                                    cout<<"*";
+                                }
+                                getch();
+                                cout<<"\n\nConfirm your PIN: ";
+                                for(int i = 0 ; i < 4 ; i++){
+                                    user_entered_pin[i] = getch() - '0';
+                                    cout<<"*";
 
-            case 'd':
+                                }
+                              
+                                
+                                getch();
+                                int j = 0;
+                                for(int i = 0 ; i < 4 ; i++){
+                                    user_entered_pin[i] == pin[i];
+                                    j++;
+
+                                }
+                                if(j == 4){
+                                    cout<<"\n\nyour PIN successful set\n";
+                                }
+                                else{
+                                    
+                                    cout<<"\n\nSorry \nYour new PIN and Confirm PIN not match";
+
+
+                                }
+
+                            }
+                            else{
+                                cout<<"\n\nWrong PIN \n\nThank you";
+                                return 0;
+                            }
+                        break;
+                        
+
+            case 'd':   //Deposit section
             case 'D': cout<<"\nDEPOSIT PER TRANSACTION LIMIT : 100000\n";
                         cout<<"A. Continue \nB. Cancel\n";
                         char s2;
                         cout<<"\nSelect: ";
                         cin>> s2;
                         if(s2 == 'a' || s2 == 'A'){
-                            // cout<<"\nPlease Enter your PIN: ";
-                            // cin
-                            int bal;
+                       
+                            int D_amt;
                             cout<<"\nEnter amount: ";
-                            cin>> bal;
-                            balance += bal;
-                            cout<<"\nSuccessful added\n";
+                            cin>> D_amt;
+
+                            
+                            cout<<"\nEnter PIN: ";
+                            for(int i = 0 ; i < 4; i++){
+                                user_entered_pin[i] = getch() - '0';
+                                cout<<"*";
+                            }
+                            getch();
+
+                           
+                            for(int i = 0; i < 4 ; i++){
+                                if(user_entered_pin[i] == pin[i] ){
+                                    right++;
+                                }
+                                else{
+                                    cout<<"\nwrong PIN \n\nThank you";
+                                    return 0;
+                                }
+                            }
+                            if(right == 4){
+                                balance += D_amt;
+                                cout<<"\nSuccessful added\n";
+
+                            }
+
 
                         }
                         else{
@@ -157,7 +276,7 @@ int main(){
                         }
                         break;
 
-            case 'e':
+            case 'e':   //exit section
             case 'E': cout<<"\n\t Thank You ";
                         return 0;
 
@@ -165,12 +284,13 @@ int main(){
             case 'F':
 
             default: cout<<"\nWrong input \n\n Thank you";
+                        return 0;
 
 
         }
 
 
-        cout<<"----------------------------------------------------------------";       
+        cout<<"\n----------------------------------------------------------------";       
         
     }
     cout<<"\n\tThank You";
@@ -195,6 +315,6 @@ int main(){
 
 
 
-
+    getch();
     return 0;
 }

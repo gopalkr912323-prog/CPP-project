@@ -39,7 +39,7 @@ int main(){
                     return 0;
     }
 
-    for(int i = 1 ; i <= 6 ; i++){
+    for(int i = 1 ; i <= 10 ; i++){
         int right = 0;
         switch(select_lang){
                 case 'a':

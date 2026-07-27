@@ -296,25 +296,12 @@ int main(){
     cout<<"\n\tThank You";
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     getch();
     return 0;
+
+
+
+
+
+
 }
